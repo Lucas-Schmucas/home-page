@@ -9,18 +9,6 @@ use App\Livewire\Auth\ForgotPassword;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class)->name('home');
-
-Route::middleware('guest')->group(function () {
-    Route::get('/login', Login::class)->name('login');
-    Route::get('/register', Register::class)->name('register');
-});
-
-Route::delete('/logout', [Login::class, 'logout'])->middleware('auth')->name('logout');
-
-Route::get('/email/verify', Verify::class)->middleware('auth')->name('verification.notice');
-
-Route::post('/email/verification-notification', [Verify::class, 'sendVerifyMail'])
-    ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
-Route::get('/reset-password/{token}', ResetPassword::class)->middleware('guest')->name('password.reset');
+Route::get('/about', Welcome::class)->name('about');
+Route::get('/books', Welcome::class)->name('books');
+Route::get('/Projects', Welcome::class)->name('projects');
