@@ -25,10 +25,15 @@ class WorkExperienceFactory extends Factory
             fake()->numberBetween(2, 5)
         );
 
+        $uuid = fake()->uuid();
+        $imageContents = file_get_contents("https://picsum.photos/seed/{$uuid}/200/200");
+        $imagePath = "work-experiences/{$uuid}.jpg";
+        \Illuminate\Support\Facades\Storage::disk('public')->put($imagePath, $imageContents);
+
         return [
             'job_title' => fake()->jobTitle(),
             'description' => fake()->paragraphs(2, true),
-            'image' => 'https://picsum.photos/seed/'.fake()->uuid().'/200/200',
+            'image' => $imagePath,
             'company_name' => fake()->company(),
             'color' => fake()->randomElement(['blue', 'purple', 'green', 'red', 'orange', 'pink']),
             'start_date' => $startDate,

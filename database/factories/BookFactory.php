@@ -19,10 +19,15 @@ class BookFactory extends Factory
         $startedOn = fake()->dateTimeBetween('-2 years', 'now');
         $finishedOn = fake()->optional(0.7)->dateTimeBetween($startedOn, 'now');
 
+        $uuid = fake()->uuid();
+        $imageContents = file_get_contents("https://picsum.photos/seed/{$uuid}/400/600");
+        $imagePath = "books/{$uuid}.jpg";
+        \Illuminate\Support\Facades\Storage::disk('public')->put($imagePath, $imageContents);
+
         return [
             'title' => fake()->words(3, true),
             'author' => fake()->name(),
-            'image_url' => 'https://picsum.photos/seed/'.fake()->uuid().'/400/600',
+            'image' => $imagePath,
             'personal_summary' => fake()->paragraphs(3, true),
             'url' => 'https://www.amazon.com',
             'started_on' => $startedOn,

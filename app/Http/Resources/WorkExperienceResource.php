@@ -18,7 +18,7 @@ class WorkExperienceResource extends JsonResource
             'id' => $this->id,
             'job_title' => $this->job_title,
             'description' => $this->description,
-            'image' => $this->image,
+            'image_url' => $this->image_url,
             'company_name' => $this->company_name,
             'color' => $this->color,
             'start_date' => $this->start_date,

@@ -20,8 +20,8 @@
                     <div class="flex gap-6" wire:key="work-{{ $work->id }}">
                         {{-- Company Logo/Image --}}
                         <div class="flex-shrink-0">
-                            @if ($work->image)
-                                <img src="{{ $work->image }}" alt="{{ $work->company_name }}" class="w-16 h-16 rounded-xl object-cover">
+                            @if ($work->image_url)
+                                <img src="{{ $work->image_url }}" alt="{{ $work->company_name }}" class="w-16 h-16 rounded-xl object-cover">
                             @else
                                 <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-{{ $work->color ?? 'blue' }}-500 to-{{ $work->color ?? 'blue' }}-700 flex items-center justify-center text-white font-bold text-2xl">
                                     {{ substr($work->company_name, 0, 1) }}
