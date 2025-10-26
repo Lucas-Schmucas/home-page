@@ -2,18 +2,21 @@
 
 namespace App\Livewire;
 
+use App\Http\Resources\WorkExperienceResource;
+use App\Models\WorkExperience;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class About extends Component
 {
     public function render()
     {
-        $workExperience = null;
-        $education = null;
+        $workExperience = Cache::rememberForever('work_experience',
+            fn() => WorkExperience::query()->orderBy('start_date', 'desc')->get()
+        );
 
         return view('livewire.about', [
             'workExperience' => $workExperience,
-            'education' => $education,
-        ])->title(config('app.name').'About');
+        ])->title(config('app.name') . ' - About');
     }
 }
