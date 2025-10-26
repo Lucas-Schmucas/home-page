@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Component;
-use Masmerise\Toaster\Toaster;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Renderless;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use DanHarrin\LivewireRateLimiting\WithRateLimiting;
-use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Renderless;
+use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 #[Layout('components.layouts.auth')]
 class ForgotPassword extends Component
@@ -25,6 +25,7 @@ class ForgotPassword extends Component
             $this->rateLimit(10, decaySeconds: 300);
         } catch (TooManyRequestsException $exception) {
             Toaster::error("You have made too many requests. Please try again in {$exception->minutesUntilAvailable} minutes.");
+
             return;
         }
 
@@ -36,11 +37,12 @@ class ForgotPassword extends Component
 
         try {
             $this->validate([
-                'email' => 'required|email|max:255'
+                'email' => 'required|email|max:255',
             ], $messages);
         } catch (ValidationException $e) {
             $message = $e->getMessage();
             Toaster::error($message);
+
             return;
         }
 
@@ -49,6 +51,7 @@ class ForgotPassword extends Component
         } catch (ValidationException $e) {
             $message = $e->getMessage();
             Toaster::error($message);
+
             return;
         }
 
@@ -58,6 +61,6 @@ class ForgotPassword extends Component
 
     public function render()
     {
-        return view('livewire.auth.forgot-password')->title('Forgot Password - ' . config('app.name'));
+        return view('livewire.auth.forgot-password')->title('Forgot Password - '.config('app.name'));
     }
 }

@@ -1,0 +1,45 @@
+<div>
+    <x-navigation />
+
+    <div class="max-w-6xl mx-auto px-6 py-20 pt-32">
+        {{-- Page Header --}}
+        <div class="mb-16">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Books I'm Reading</h1>
+            <p class="text-xl text-gray-300 leading-relaxed">
+                Click on a book to flip it and read my thoughts. Each book includes a link to Amazon.
+            </p>
+        </div>
+
+        {{-- Books Grid --}}
+        <div class="grid md:grid-cols-2 gap-12 mb-20">
+            @foreach ($books as $book)
+                <div class="h-[500px] cursor-pointer [perspective:1000px]" x-data="{ flipped: false }" @click="flipped = !flipped" wire:key="book-{{ $loop->index }}">
+                    <div class="relative w-full h-full transition-transform duration-600 [transform-style:preserve-3d]" :class="flipped && '[transform:rotateY(180deg)]'">
+                        {{-- Front of card (Book cover) --}}
+                        <div class="absolute w-full h-full [backface-visibility:hidden]">
+                            <div class="w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10">
+                                <img src="{{ $book['image'] }}"
+                                     alt="{{ $book['title'] }}"
+                                     class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        {{-- Back of card (Review) --}}
+                        <div class="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                            <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-8 border border-white/10 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-4">My Thoughts</h3>
+                                    <div class="text-gray-300 leading-relaxed space-y-4">
+                                        @foreach (explode("\n\n", $book['thoughts']) as $paragraph)
+                                            <p>{{ $paragraph }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>

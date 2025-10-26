@@ -2,9 +2,9 @@
 
 namespace App\Notifications\Auth;
 
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class SendEmailOTP extends VerifyEmail implements ShouldQueue
@@ -32,12 +32,12 @@ class SendEmailOTP extends VerifyEmail implements ShouldQueue
 HTML;
 
         return (new MailMessage)
-            ->subject("Verify Your Email Address")
-            ->line("Welcome to the " . config('app.name') . "! Please verify your email address by entering the following code.")
+            ->subject('Verify Your Email Address')
+            ->line('Welcome to the '.config('app.name').'! Please verify your email address by entering the following code.')
             ->line(new \Illuminate\Support\HtmlString($codeHtml))
-            ->line("This code will expire in 24 hours.")
+            ->line('This code will expire in 24 hours.')
             ->line(
-                "If you did not create this account, please ignore this email."
+                'If you did not create this account, please ignore this email.'
             );
     }
 }

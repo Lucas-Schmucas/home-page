@@ -3,14 +3,14 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
-use Livewire\Component;
-use Livewire\Attributes\Layout;
-use Masmerise\Toaster\Toaster;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use DanHarrin\LivewireRateLimiting\WithRateLimiting;
-use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 #[Layout('components.layouts.auth')]
 class Register extends Component
@@ -18,10 +18,15 @@ class Register extends Component
     use WithRateLimiting;
 
     public string $name;
+
     public string $surname;
+
     public string $email;
+
     public string $password;
+
     public string $password_confirmation;
+
     public bool $terms;
 
     public function register()
@@ -30,6 +35,7 @@ class Register extends Component
             $this->rateLimit(10, decaySeconds: 300);
         } catch (TooManyRequestsException $exception) {
             Toaster::error("You have made too many requests. Please try again in {$exception->minutesUntilAvailable} minutes.");
+
             return;
         }
 
@@ -43,6 +49,7 @@ class Register extends Component
             ]);
         } catch (ValidationException $exception) {
             Toaster::error($exception->getMessage());
+
             return;
         }
 
@@ -59,11 +66,11 @@ class Register extends Component
 
         event(new Registered($user));
 
-        return redirect(route('verification.notice'))->success('Welcome to the ' . config('app.name') . '!');
+        return redirect(route('verification.notice'))->success('Welcome to the '.config('app.name').'!');
     }
 
     public function render()
     {
-        return view('livewire.auth.register')->title('Sign Up - ' . config('app.name'));
+        return view('livewire.auth.register')->title('Sign Up - '.config('app.name'));
     }
 }

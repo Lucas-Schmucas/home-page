@@ -20,12 +20,12 @@ class ResetPasswordQueued extends ResetPassword implements ShouldQueue
     protected function buildMailMessage($url)
     {
         return (new MailMessage)
-            ->subject("Reset Password Request")
-            ->line("We received a request to reset your password. Please click the button below to reset your password.")
-            ->action("Reset Password", $url)
+            ->subject('Reset Password Request')
+            ->line('We received a request to reset your password. Please click the button below to reset your password.')
+            ->action('Reset Password', $url)
             ->line(
                 'This link will expire in 60 minutes.'
             )
-            ->line("If you did not request a password reset, please ignore this email.");
+            ->line('If you did not request a password reset, please ignore this email.');
     }
 }
