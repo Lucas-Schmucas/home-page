@@ -20,9 +20,17 @@ class BookFactory extends Factory
         $finishedOn = fake()->optional(0.7)->dateTimeBetween($startedOn, 'now');
 
         $uuid = fake()->uuid();
-        $imageContents = file_get_contents("https://picsum.photos/seed/{$uuid}/400/600");
-        $imagePath = "books/{$uuid}.jpg";
-        \Illuminate\Support\Facades\Storage::disk('public')->put($imagePath, $imageContents);
+        $imagePath = null;
+
+        try {
+            $imageContents = @file_get_contents("https://picsum.photos/seed/{$uuid}/200/200");
+            if ($imageContents !== false) {
+                $imagePath = "books/{$uuid}.jpg";
+                \Illuminate\Support\Facades\Storage::disk('public')->put($imagePath, $imageContents);
+            }
+        } catch (\Exception $e) {
+            // If image fetching fails, just continue without an image
+        }
 
         return [
             'title' => fake()->words(3, true),

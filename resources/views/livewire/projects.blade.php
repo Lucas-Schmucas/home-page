@@ -1,16 +1,24 @@
-<div>
-    <x-navigation />
-
-    <div class="max-w-6xl mx-auto px-6 py-20 pt-32">
-        {{-- Page Header --}}
-        <div class="mb-16">
-            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Projects</h1>
-            <p class="text-xl text-gray-300 leading-relaxed">
-                A collection of projects I've been working on, from side projects to open-source contributions.
-            </p>
+<x-layouts.page>
+    {{-- Page Header --}}
+    <div class="mb-16">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-5xl md:text-6xl font-bold text-white">Projects</h1>
+            @auth
+                <a href="{{ route('projects.create') }}"
+                   class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    <span>Add Project</span>
+                </a>
+            @endauth
         </div>
+        <p class="text-xl text-gray-300 leading-relaxed">
+            A collection of projects I've been working on, from side projects to open-source contributions.
+        </p>
+    </div>
 
-        @if($projects->isEmpty())
+    @if($projects->isEmpty())
             {{-- Empty State --}}
             <div class="text-center py-20">
                 <div class="text-gray-400 text-lg">
@@ -20,7 +28,7 @@
             </div>
         @else
             {{-- Projects Grid --}}
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-12">
                 @foreach ($projects as $project)
                     <div class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10" wire:key="project-{{ $project->id }}">
                         {{-- Project Header --}}
@@ -73,5 +81,4 @@
                 @endforeach
             </div>
         @endif
-    </div>
-</div>
+</x-layouts.page>

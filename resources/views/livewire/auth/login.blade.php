@@ -2,10 +2,6 @@
     <div class="flex items-center justify-between gap-5">
         <div class="size-9 rounded-full bg-blue-700 shadow-blue-500/10">
         </div>
-        <p class="text-xs text-gray-500 flex items-center gap-1">
-            Don't have an account? <a wire:navigate.hover href="{{ route('register') }}"
-                class="text-blue-500 hover:text-blue-400 font-medium">Sign Up</a>
-        </p>
     </div>
     <div class="mt-10 w-min mx-auto">
         <div
@@ -31,8 +27,6 @@
                 <input type="checkbox" id="remember" class="w-4 h-4 rounded-sm bg-gray-900 border border-gray-800" />
                 <label for="remember" class="text-sm text-gray-400">Keep me logged in</label>
             </div>
-            <a href="{{ route('forgot-password') }}" wire:navigate.hover
-                class="text-sm text-blue-400 hover:underline">Forgot password?</a>
         </div>
         <button type="submit" class="btn-primary px-4 py-2 w-full">
             <span wire:loading.remove wire:target="authenticate">Sign In</span>

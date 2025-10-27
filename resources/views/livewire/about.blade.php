@@ -1,19 +1,27 @@
-<div>
-    <x-navigation />
+<x-layouts.page>
+    {{-- Page Header --}}
+    <div class="mb-16">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">About Me</h1>
+        <p class="text-xl text-gray-300 leading-relaxed">
+            I'm a full-stack developer with a passion for building elegant solutions to complex problems.
+            Here's a bit about my journey.
+        </p>
+    </div>
 
-    <div class="max-w-4xl mx-auto px-6 py-20 pt-32">
-        {{-- Page Header --}}
-        <div class="mb-16">
-            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">About Me</h1>
-            <p class="text-xl text-gray-300 leading-relaxed">
-                I'm a full-stack developer with a passion for building elegant solutions to complex problems.
-                Here's a bit about my journey.
-            </p>
-        </div>
-
-        {{-- Work Experience Section --}}
+    {{-- Work Experience Section --}}
         <section class="mb-20">
-            <h2 class="text-3xl font-bold text-white mb-12">Work Experience</h2>
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-3xl font-bold text-white">Work Experience</h2>
+                @auth
+                    <a href="{{ route('work-experience.create') }}"
+                       class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        <span>Add Experience</span>
+                    </a>
+                @endauth
+            </div>
 
             <div class="space-y-12">
                 @foreach ($workExperience as $work)
@@ -53,5 +61,4 @@
                 @endforeach
             </div>
         </section>
-      </div>
-</div>
+</x-layouts.page>

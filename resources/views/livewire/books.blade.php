@@ -1,15 +1,23 @@
-<div>
-    <x-navigation />
-
-    <div class="max-w-6xl mx-auto px-6 py-20 pt-32">
-        {{-- Page Header --}}
-        <div class="mb-16">
-            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">My Bookshelf</h1>
-            <p class="text-xl text-gray-300 leading-relaxed">
-                Some of the books that have kept me company on my journey so far. <br>
-            </p>
+<x-layouts.page>
+    {{-- Page Header --}}
+    <div class="mb-16">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-5xl md:text-6xl font-bold text-white">My Bookshelf</h1>
+            @auth
+                <a href="{{ route('books.create') }}"
+                   class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    <span>Add Book</span>
+                </a>
+            @endauth
         </div>
-        @if($books)
+        <p class="text-xl text-gray-300 leading-relaxed">
+            Some of the books that have kept me company on my journey so far. <br>
+        </p>
+    </div>
+    @if($books)
         {{-- Books Grid --}}
         <div class="grid md:grid-cols-2 gap-12 mb-20">
             @foreach ($books as $book)
@@ -71,10 +79,9 @@
             @endforeach
         </div>
 
-        {{-- Pagination --}}
-        <div class="mt-12">
-            {{ $books->links('vendor.pagination.custom') }}
-        </div>
-        @endif
+    {{-- Pagination --}}
+    <div class="mt-12">
+        {{ $books->links('vendor.pagination.custom') }}
     </div>
-</div>
+    @endif
+</x-layouts.page>

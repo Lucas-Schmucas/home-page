@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\About;
+use App\Livewire\Auth\Login;
 use App\Livewire\Books;
 use App\Livewire\Home;
 use App\Livewire\Projects;
@@ -11,3 +12,4 @@ Route::get('/about', About::class)->name('about');
 Route::get('/books', Books::class)->name('books');
 Route::get('/mcp', Projects::class)->name('mcp');
 Route::get('/projects', Projects::class)->name('projects');
+Route::get('/login', Login::class)->name('login');
