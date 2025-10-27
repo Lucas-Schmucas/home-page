@@ -128,6 +128,7 @@ protected function isAccessible(User $user, ?string $path = null): bool
 
 ### Model Creation
 - When creating new models, create useful factories and seeders for them too. Ask the user if they need any other things, using `list-artisan-commands` to check the available options to `php artisan make:model`.
+- When creating new models, use guarded and not fillable property to define access restrictions of db data.  
 
 ### APIs & Eloquent Resources
 - For APIs, default to using Eloquent API Resources and API versioning unless existing API routes do not, then you should follow existing application convention.

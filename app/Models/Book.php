@@ -12,6 +12,16 @@ class Book extends Model
     /** @use HasFactory<\Database\Factories\BookFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'author',
+        'image',
+        'personal_summary',
+        'url',
+        'started_on',
+        'finished_on',
+    ];
+
     protected function casts(): array
     {
         return [
