@@ -13,7 +13,8 @@
                 <a href="{{ route('about') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">About</a>
                 <a href="{{ route('books') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">Books</a>
                 <a href="{{ route('projects') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">Projects</a>
-                <a href="mailto:hello@example.com" class="px-4 py-2 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition-all font-medium">
+                <a href="{{ route('mcp') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">MCP</a>
+                <a href="mailto:{{ config('information.contact.mail') }}" class="px-4 py-2 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition-all font-medium">
                     Contact
                 </a>
             </div>

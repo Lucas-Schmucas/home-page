@@ -3,15 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 
-class BookSeeder extends Seeder
+class ProjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Book::factory()->count(10)->create();
+        Project::factory()->count(3)->create();
     }
 }

@@ -4,9 +4,9 @@
     <div class="max-w-6xl mx-auto px-6 py-20 pt-32">
         {{-- Page Header --}}
         <div class="mb-16">
-            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Books I read</h1>
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">My Bookshelf</h1>
             <p class="text-xl text-gray-300 leading-relaxed">
-                Click on a book to flip it and read my thoughts.
+                Some of the books that have kept me company on my journey so far. <br>
             </p>
         </div>
         @if($books)

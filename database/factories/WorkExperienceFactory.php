@@ -26,9 +26,17 @@ class WorkExperienceFactory extends Factory
         );
 
         $uuid = fake()->uuid();
-        $imageContents = file_get_contents("https://picsum.photos/seed/{$uuid}/200/200");
-        $imagePath = "work-experiences/{$uuid}.jpg";
-        \Illuminate\Support\Facades\Storage::disk('public')->put($imagePath, $imageContents);
+        $imagePath = null;
+
+        try {
+            $imageContents = @file_get_contents("https://picsum.photos/seed/{$uuid}/200/200");
+            if ($imageContents !== false) {
+                $imagePath = "work-experiences/{$uuid}.jpg";
+                \Illuminate\Support\Facades\Storage::disk('public')->put($imagePath, $imageContents);
+            }
+        } catch (\Exception $e) {
+            // If image fetching fails, just continue without an image
+        }
 
         return [
             'job_title' => fake()->jobTitle(),
