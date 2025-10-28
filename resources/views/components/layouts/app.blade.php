@@ -4,8 +4,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=inter:200,300,400,500,600,700,800" rel="stylesheet" />
         <title>{{ $title ?? config('app.name') }}</title>
         @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,7 +17,7 @@
         {{-- Footer --}}
         <footer class="relative z-10 py-12 text-center border-t border-gray-700/50">
             <div class="max-w-6xl mx-auto px-6">
-                <p class="text-gray-400">© {{ date('Y') }} Lucas. Built with Laravel & Livewire.</p>
+                <p class="text-gray-400">© {{ date('Y') }} Lucas-Schmucas. Built with Laravel & Livewire.</p>
             </div>
         </footer>
 

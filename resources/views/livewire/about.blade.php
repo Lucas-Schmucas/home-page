@@ -3,7 +3,7 @@
     <div class="mb-16">
         <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">About Me</h1>
         <p class="text-xl text-gray-300 leading-relaxed">
-            I'm a full-stack developer with a passion for building elegant solutions to complex problems.
+            I'm a full-stack developer with a passion for building elegant solutions to complex problems. <br>
             Here's a bit about my journey.
         </p>
     </div>
@@ -51,7 +51,8 @@
                             </p>
                             <div class="flex flex-wrap gap-2">
                                 @foreach ($work->technologies as $tech)
-                                    <span class="px-3 py-1 bg-{{ $work->color ?? 'blue' }}-500/10 text-{{ $work->color ?? 'blue' }}-400 rounded-lg text-sm border border-{{ $work->color ?? 'blue' }}-500/30">
+                                    <span class="px-3 py-1 rounded-lg text-sm font-medium border"
+                                          style="background-color: {{ $tech->color() }}20; color: {{ $tech->color() }}; border-color: {{ $tech->color() }}50;">
                                         {{ $tech->value }}
                                     </span>
                                 @endforeach

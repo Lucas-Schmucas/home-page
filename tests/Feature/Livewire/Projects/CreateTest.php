@@ -3,6 +3,7 @@
 use App\Livewire\Projects\Create;
 use App\Models\Project;
 use App\Models\User;
+use App\Technology;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
@@ -114,7 +115,10 @@ it('can create a project with all fields', function () {
     expect($project->description)->toBe('A comprehensive project with all details.');
     expect($project->url)->toBe('https://example.com/project');
     expect($project->github_url)->toBe('https://github.com/user/repo');
-    expect($project->technologies)->toBe(['Laravel', 'Vue.js', 'Tailwind CSS']);
+    expect($project->technologies)->toHaveCount(3);
+    expect($project->technologies[0])->toBe(Technology::Laravel);
+    expect($project->technologies[1])->toBe(Technology::Vue);
+    expect($project->technologies[2])->toBe(Technology::Tailwind);
 });
 
 it('can add technology fields dynamically', function () {
@@ -153,9 +157,9 @@ it('filters out empty technologies when saving', function () {
     $project = Project::where('name', 'Filter Test Project')->first();
 
     expect($project->technologies)->toHaveCount(3);
-    expect($project->technologies)->toContain('Laravel');
-    expect($project->technologies)->toContain('Vue.js');
-    expect($project->technologies)->toContain('Tailwind CSS');
+    expect($project->technologies->contains(Technology::Laravel))->toBeTrue();
+    expect($project->technologies->contains(Technology::Vue))->toBeTrue();
+    expect($project->technologies->contains(Technology::Tailwind))->toBeTrue();
 });
 
 it('can create a project with empty technologies array', function () {
@@ -171,7 +175,7 @@ it('can create a project with empty technologies array', function () {
 
     $project = Project::where('name', 'No Tech Project')->first();
 
-    expect($project->technologies)->toBe([]);
+    expect($project->technologies)->toBeEmpty();
 });
 
 it('sets success flash message after creation', function () {

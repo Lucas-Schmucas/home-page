@@ -14,7 +14,7 @@
             @endauth
         </div>
         <p class="text-xl text-gray-300 leading-relaxed">
-            A collection of projects I've been working on, from side projects to open-source contributions.
+            A collection of side projects I've been working on.
         </p>
     </div>
 
@@ -46,8 +46,9 @@
                         @if($project->technologies)
                             <div class="flex flex-wrap gap-2 mb-6">
                                 @foreach ($project->technologies as $tech)
-                                    <span class="px-3 py-1 text-xs font-medium bg-gray-700/50 text-gray-300 rounded-lg border border-gray-600/50">
-                                        {{ $tech }}
+                                    <span class="px-3 py-1 text-xs font-medium rounded-lg border"
+                                          style="background-color: {{ $tech->color() }}20; color: {{ $tech->color() }}; border-color: {{ $tech->color() }}50;">
+                                        {{ $tech->value }}
                                     </span>
                                 @endforeach
                             </div>
