@@ -3,10 +3,13 @@
 use App\Livewire\Projects\Create;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
+
+uses(RefreshDatabase::class);
 
 it('redirects guests to login when trying to access create project page', function () {
     $this->get(route('projects.create'))

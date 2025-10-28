@@ -3,6 +3,7 @@
 use App\Livewire\Books\Create;
 use App\Models\Book;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -10,6 +11,8 @@ use Livewire\Livewire;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
+
+uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Storage::fake('public');

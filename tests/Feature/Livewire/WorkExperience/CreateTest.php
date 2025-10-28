@@ -4,6 +4,7 @@ use App\Livewire\WorkExperience\Create;
 use App\Models\User;
 use App\Models\WorkExperience;
 use App\Technology;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,8 @@ use Livewire\Livewire;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
+
+uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Storage::fake('public');
