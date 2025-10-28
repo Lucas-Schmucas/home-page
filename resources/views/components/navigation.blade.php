@@ -17,6 +17,9 @@
                 <a href="mailto:{{ config('information.contact.mail') }}" class="px-4 py-2 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition-all font-medium">
                     Contact
                 </a>
+                @auth
+                    <livewire:auth.logout />
+                @endauth
             </div>
         </div>
     </div>
