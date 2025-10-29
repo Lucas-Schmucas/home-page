@@ -2,12 +2,18 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Home extends Component
 {
     public function render()
     {
-        return view('livewire.home')->title(config('app.name').' - Home');
+        $profileImagePath = 'profile_image.jpg';
+        $profileImageUrl = Storage::disk('public')->url($profileImagePath);
+
+        return view('livewire.home', [
+            'profileImageUrl' => $profileImageUrl,
+        ])->title(config('app.name').' - Home');
     }
 }
