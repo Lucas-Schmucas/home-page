@@ -10,7 +10,6 @@
             {{-- Navigation Links --}}
             <div class="flex items-center gap-8">
                 <a href="{{ route('home') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">Home</a>
-                <a href="{{ route('about') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">About</a>
                 <a href="{{ route('books') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">Books</a>
                 <a href="{{ route('projects') }}" wire:navigate.hover class="text-gray-300 hover:text-white transition-colors font-medium">Projects</a>
                 <span class="relative inline-flex items-center gap-2 text-gray-500 cursor-not-allowed font-medium">
