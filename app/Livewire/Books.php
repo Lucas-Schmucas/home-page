@@ -14,11 +14,11 @@ class Books extends Component
     public function render()
     {
         $books = Cache::rememberForever('books',
-            fn() => Book::query()->paginate(12)
+            fn () => Book::query()->paginate(12)
         );
 
         return view('livewire.books', [
             'books' => $books,
-        ])->title(config('app.name') . ' Books');
+        ])->title(config('app.name').' Books');
     }
 }

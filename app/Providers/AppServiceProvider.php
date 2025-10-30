@@ -32,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
 
         Date::use(CarbonImmutable::class);
 
-        URL::forceHttps(app()->isProduction() || app()->environment('stage'));    }
+        URL::forceHttps(app()->isProduction() || app()->environment('stage'));
+    }
 }
