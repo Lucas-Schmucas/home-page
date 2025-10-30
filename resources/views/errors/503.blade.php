@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawsitively Under Construction! (503)</title>
 
-    {{-- This tells the browser to refresh after the specified time
-         if you use the --retry option with the artisan down command. --}}
-
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -39,7 +36,7 @@
         }
         .cat-image {
             margin: 20px 0;
-            border: 4px solid #ffc107; /* Matches the headline color */
+            border: 4px solid #ffc107;
             border-radius: 8px;
             overflow: hidden;
             display: inline-block;
@@ -48,13 +45,6 @@
             max-width: 100%;
             height: auto;
             display: block;
-        }
-        .task-message {
-            background-color: #e9ecef;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-size: 1rem;
         }
     </style>
 </head>
