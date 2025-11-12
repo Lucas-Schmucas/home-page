@@ -53,7 +53,7 @@
     <h1>🚧 Pawsitively Under Construction!</h1>
 
     <div class="cat-image">
-        <img src="https://i.imgflip.com/68kxr.jpg" alt="The Lead Engineer is working hard" width="450">
+        <img src="{{ asset('images/cat-engineer.jpg') }}" alt="The Lead Engineer is working hard" width="450">
     </div>
 
     <p>
