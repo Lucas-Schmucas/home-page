@@ -1,5 +1,8 @@
 [phases.setup]
-nixPkgs = ["...", "python311Packages.supervisor"]
+nixPkgs = [
+"sqlite",
+"python311Packages.supervisor"
+]
 
 [phases.build]
 cmds = [
@@ -7,7 +10,6 @@ cmds = [
     "cp /assets/worker-*.conf /etc/supervisor/conf.d/",
     "cp /assets/supervisord.conf /etc/supervisord.conf",
     "chmod +x /assets/start.sh",
-    "..."
 ]
 
 [start]
