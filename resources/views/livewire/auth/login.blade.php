@@ -19,6 +19,7 @@
         <p class="text-sm text-gray-400">Enter your details to sign in.</p>
     </div>
     <form wire:submit="authenticate" class="mt-7 w-11/12 xl:w-3/4 2xl:w-2/3 mx-auto space-y-4">
+        @csrf
         <hr class="border-t border-gray-800 h-1 mb-6">
         <x-form.input-text label="Email Address" name="email" placeholder="hello@example.com" required />
         <x-form.input-text label="Password" type="password" name="password" placeholder="********" required />
