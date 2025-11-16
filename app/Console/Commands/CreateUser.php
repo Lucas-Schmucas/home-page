@@ -33,13 +33,15 @@ class CreateUser extends Command
         $confirm = $this->secret('Confirm password');
 
         if ($password !== $confirm) {
-            $this->error("Passwords do not match!");
-            return Command::FAILURE;
+            $this->error('Passwords do not match!');
+
+            return self::FAILURE;
         }
 
         if (User::query()->where('email', $email)->exists()) {
-            $this->error("A user with that email already exists.");
-            return Command::FAILURE;
+            $this->error('A user with that email already exists.');
+
+            return self::FAILURE;
         }
 
         $user = User::query()->create([
@@ -52,7 +54,6 @@ class CreateUser extends Command
 
         $this->info("Verified user created: {$user->email}");
 
-        return Command::SUCCESS;
+        return self::SUCCESS;
     }
-
 }

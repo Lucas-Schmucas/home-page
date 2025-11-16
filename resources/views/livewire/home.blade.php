@@ -7,17 +7,20 @@
             <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center w-full">
                 {{-- Left Column - Image --}}
                 <div class="flex justify-center md:justify-start">
-                    <div class="relative">
-                        @if($profileImageUrl)
-                            <img src="{{ $profileImageUrl }}"
-                                 alt="Profile"
-                                 class="w-72 h-72 md:w-96 md:h-96 rounded-2xl object-cover shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                        @else
-                            <div
-                                class="w-72 h-72 md:w-96 md:h-96 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-8xl font-bold shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                                L
-                            </div>
-                        @endif
+                    <div class="space-y-4">
+                        <div class="relative">
+                            @if($profileImageUrl)
+                                <img src="{{ $profileImageUrl }}"
+                                     alt="Profile"
+                                     class="w-72 h-72 md:w-96 md:h-96 rounded-2xl object-cover shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                            @else
+                                <div
+                                    class="w-72 h-72 md:w-96 md:h-96 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-8xl font-bold shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                                    L
+                                </div>
+                            @endif
+                        </div>
+                        <livewire:profile-image-upload />
                     </div>
                 </div>
 
