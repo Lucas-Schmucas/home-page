@@ -13,10 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->trustProxies(
             at: '*',
-            headers: Request::HEADER_X_FORWARDED_FOR
-        | Request::HEADER_X_FORWARDED_HOST
-        | Request::HEADER_X_FORWARDED_PORT
-        | Request::HEADER_X_FORWARDED_PROTO);
+            headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR
+        |  \Illuminate\Http\Request::HEADER_X_FORWARDED_HOST
+        |  \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT
+        |  \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
