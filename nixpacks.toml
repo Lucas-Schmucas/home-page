@@ -1,7 +1,7 @@
 [phases.setup]
 nixPkgs = [
 "...",
-"sqlite",
+"mysql",
 "python311Packages.supervisor"
 ]
 
