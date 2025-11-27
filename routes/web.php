@@ -14,5 +14,6 @@ Route::get('/login', Login::class)->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/books/create', \App\Livewire\Books\Create::class)->name('books.create');
+    Route::get('/books/{book}/edit', \App\Livewire\Books\Edit::class)->name('books.edit');
     Route::get('/projects/create', \App\Livewire\Projects\Create::class)->name('projects.create');
 });
