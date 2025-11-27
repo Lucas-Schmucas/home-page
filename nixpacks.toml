@@ -1,7 +1,6 @@
 [phases.setup]
 nixPkgs = [
 "...",
-"mariadb",
 "python311Packages.supervisor"
 ]
 
