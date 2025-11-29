@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Books;
 
+use App\Actions\Images\CompressImage;
+use App\Actions\Images\StoreImage;
 use App\Models\Book;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Validate;
@@ -33,13 +35,14 @@ class Create extends Component
     #[Validate('nullable|date')]
     public ?string $finished_on = null;
 
-    public function save(): void
+    public function save(CompressImage $compressImage, StoreImage $storeImage): void
     {
         $this->validate();
 
         $imagePath = null;
         if ($this->image) {
-            $imagePath = $this->image->store('books', 'public');
+            $compressed = $compressImage->execute($this->image);
+            $imagePath = $storeImage->execute($compressed, 'books');
         }
 
         Book::create([

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Books;
 
+use App\Actions\Images\CompressImage;
+use App\Actions\Images\StoreImage;
 use App\Models\Book;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -47,18 +49,18 @@ class Edit extends Component
         $this->finished_on = $book->finished_on?->format('Y-m-d');
     }
 
-    public function save(): void
+    public function save(CompressImage $compressImage, StoreImage $storeImage): void
     {
         $this->validate();
 
         $imagePath = $this->book->image;
 
         if ($this->image) {
-            // Delete old image if exists
             if ($this->book->image) {
                 Storage::disk('public')->delete($this->book->image);
             }
-            $imagePath = $this->image->store('books', 'public');
+            $compressed = $compressImage->execute($this->image);
+            $imagePath = $storeImage->execute($compressed, 'books');
         }
 
         $this->book->update([
