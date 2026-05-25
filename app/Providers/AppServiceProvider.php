@@ -4,12 +4,12 @@ namespace App\Providers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Queue\Events\Looping;
-use Illuminate\Queue\Events\WorkerStopping;
+use Illuminate\Foundation\Events\MaintenanceModeDisabled;
+use Illuminate\Foundation\Events\MaintenanceModeEnabled;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
         URL::forceHttps(app()->isProduction() || app()->environment('stage'));
 
-        Event::listen(Looping::class, fn () => Log::warning('[queue-debug] Looping iteration', ['pid' => getmypid(), 'mem_mb' => round(memory_get_usage(true) / 1048576, 1)]));
-        Event::listen(WorkerStopping::class, fn (WorkerStopping $e) => Log::warning('[queue-debug] WorkerStopping', ['pid' => getmypid(), 'status' => $e->status, 'mem_mb' => round(memory_get_usage(true) / 1048576, 1)]));
+        Event::listen(MaintenanceModeEnabled::class, fn () => Artisan::call('queue:pause'));
+        Event::listen(MaintenanceModeDisabled::class, fn () => Artisan::call('queue:resume'));
     }
 }
